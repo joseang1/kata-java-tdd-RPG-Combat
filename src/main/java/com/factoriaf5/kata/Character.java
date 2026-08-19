@@ -55,10 +55,6 @@ public class Character {
         }
     }
 
-    public void setHealth(int health) {
-        this.health = health;
-    }
-
     public void setLevel(int level) {
         this.level = level;
     }

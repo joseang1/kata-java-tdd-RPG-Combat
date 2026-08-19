@@ -44,4 +44,31 @@ public class CharacterCombatTest {
         assertEquals(0, target.getHealth());
         assertFalse(target.isAlive());
     }
+
+    @Test
+    public void healingDamage() {
+
+        attacker.dealDamageTo(target, 800);
+        attacker.healDamageTo(target, 200);
+
+        assertEquals(400, target.getHealth());
+    }
+
+    @Test
+    public void healingCannotExceedHealth1000() {
+        
+        attacker.dealDamageTo(target, 200);
+        attacker.healDamageTo(target, 400);
+
+        assertEquals(1000, target.getHealth());
+    }
+    
+    @Test
+    public void deadCharactersCannotBeHealed() {
+
+        attacker.dealDamageTo(target, 1100);
+        attacker.healDamageTo(target, 100);
+
+        assertEquals(0, target.getHealth());
+    }
 }
