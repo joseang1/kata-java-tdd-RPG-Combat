@@ -40,6 +40,21 @@ public class Character {
         }
     }
 
+    public void healDamageTo(Character target, int heal) {
+        target.receiveHealing(heal);
+    }
+
+    private void receiveHealing(int heal) {
+        if(!alive) {
+            return;
+        }
+        if(heal + health >= 1000) {
+            health = 1000;
+        } else {
+            health += heal;
+        }
+    }
+
     public void setHealth(int health) {
         this.health = health;
     }
