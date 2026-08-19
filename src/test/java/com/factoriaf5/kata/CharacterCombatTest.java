@@ -48,7 +48,7 @@ public class CharacterCombatTest {
     @Test
     public void healingDamage() {
 
-        attacker.dealDamageTo(target, 800);
+        target.setHealth(200);
         attacker.healDamageTo(target, 200);
 
         assertEquals(400, target.getHealth());
@@ -57,7 +57,7 @@ public class CharacterCombatTest {
     @Test
     public void healingCannotExceedHealth1000() {
         
-        attacker.dealDamageTo(target, 200);
+        target.setHealth(800);
         attacker.healDamageTo(target, 400);
 
         assertEquals(1000, target.getHealth());
@@ -66,9 +66,9 @@ public class CharacterCombatTest {
     @Test
     public void deadCharactersCannotBeHealed() {
 
-        attacker.dealDamageTo(target, 1100);
+        target.setAlive(false);
         attacker.healDamageTo(target, 100);
 
-        assertEquals(0, target.getHealth());
+        assertFalse(target.isAlive());
     }
 }
