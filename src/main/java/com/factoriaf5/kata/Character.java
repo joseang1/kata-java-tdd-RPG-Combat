@@ -24,6 +24,22 @@ public class Character {
         return alive;
     }
 
+    public void dealDamageTo(Character target, int damage) {
+        target.receiveDamage(damage);
+    }
+
+    private void receiveDamage(int damage) {
+        if(!alive) {
+            return;
+        }
+        if(damage >= health) {
+            health = 0;
+            alive = false;
+        } else {
+            health -= damage;
+        }
+    }
+
     public void setHealth(int health) {
         this.health = health;
     }
