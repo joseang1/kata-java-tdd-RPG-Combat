@@ -28,9 +28,18 @@ public class CharacterCombatTest {
     }
 
     @Test
-    public void whenDamageEqualsDeathTargetDiesWithZeroHealth() {
+    public void whenDamageEqualsHealthTargetDiesWithZeroHealth() {
 
         attacker.dealDamageTo(target, 1000);
+
+        assertEquals(0, target.getHealth());
+        assertFalse(target.isAlive());
+    }
+
+    @Test
+    public void whenDamageExceedsHealthTargetDiesWithZeroHealth() {
+
+        attacker.dealDamageTo(target, 1001);
 
         assertEquals(0, target.getHealth());
         assertFalse(target.isAlive());
