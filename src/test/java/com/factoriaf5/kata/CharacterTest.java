@@ -15,4 +15,15 @@ public class CharacterTest {
         assertEquals(1, character.getLevel());
         assertTrue(character.isAlive());
     }
+
+    @Test
+    public void whenDamageDealtHealthDecrease() {
+        Character attacker = new Character();
+        Character target = new Character();
+        
+        attacker.dealDamageTo(target, 300);
+
+        assertEquals(700, target.getHealth());
+        assertTrue(target.isAlive());
+    }
 }
