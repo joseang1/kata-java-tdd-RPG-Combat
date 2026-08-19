@@ -11,4 +11,28 @@ public class Character {
         this.level = 1;
         this.alive = true;
     }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public boolean isAlive() {
+        return alive;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public void setAlive(boolean alive) {
+        this.alive = alive;
+    }
 }
