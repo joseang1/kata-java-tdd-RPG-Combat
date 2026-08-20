@@ -44,6 +44,9 @@ public class Character {
     }
 
     public void healDamageTo(Character target, int heal) {
+        if(this != target) {
+            return;
+        }
         target.receiveHealing(heal);
     }
 
