@@ -1,5 +1,8 @@
 package com.factoriaf5.kata;
 
+import java.util.HashMap;
+import java.util.HashSet;
+
 public class Character {
     
     private int health;
@@ -80,13 +83,6 @@ public class Character {
             health += heal;
         }
     }
-
-    // public void characterLocation(int location) {
-    //     if(location >= maxRange) {
-    //         target.receiveDamage()
-    //     } 
-    // }
-    
 
     public int maxRange(Character target, int range) {
         return range;
