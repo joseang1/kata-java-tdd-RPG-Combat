@@ -28,7 +28,13 @@ public class Character {
         if(this == target) {
             return;
         }
-        target.receiveDamage(damage);
+        if (target.getLevel() - this.getLevel() >= 5) {
+            target.receiveDamage(damage /2);
+        } else if (target.getLevel() - this.getLevel() <= -5) {
+            target.receiveDamage(damage + damage /2);
+        } else {
+            target.receiveDamage(damage);
+        }
     }
 
     private void receiveDamage(int damage) {
@@ -39,7 +45,7 @@ public class Character {
             health = 0;
             alive = false;
         } else {
-            health -= damage;
+            health -= damage; /* health = health - damage */
         }
     }
 

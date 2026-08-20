@@ -66,9 +66,49 @@ public class CharacterCombatTest {
     @Test
     public void deadCharactersCannotBeHealed() {
 
-        target.setAlive(false);
+        attacker.dealDamageTo(target, 1000);
         attacker.healDamageTo(target, 100);
 
+        assertEquals(0, target.getHealth());
         assertFalse(target.isAlive());
+    }
+
+    @Test
+    public void cannotDealDamageToItself() {
+
+        attacker.dealDamageTo(attacker, 100);
+
+        assertEquals(1000, attacker.getHealth());
+    }
+    
+    @Test
+    public void cannotHealOthers() {
+
+        attacker.setHealth(800);
+        target.healDamageTo(attacker, 100);
+
+        assertEquals(800, attacker.getHealth());
+    }
+
+    @Test
+    public void damageReducedFiftyPercentAttacker5LevelsAbove() {
+
+        attacker.setLevel(8);
+        target.setLevel(3);
+
+        target.dealDamageTo(attacker, 200);
+
+        assertEquals(900, attacker.getHealth());
+    }
+
+    @Test
+    public void damageRisedFiftyPercentTarget5LevelsBelow() {
+
+        attacker.setLevel(8);
+        target.setLevel(3);
+
+        attacker.dealDamageTo(target, 100);
+
+        assertEquals(850, target.getHealth());
     }
 }
