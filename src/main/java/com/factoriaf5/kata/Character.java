@@ -5,6 +5,7 @@ public class Character {
     private int health;
     private int level;
     private boolean alive;
+    protected int maxRange;
 
     public Character() {
         this.health = 1000;
@@ -22,6 +23,10 @@ public class Character {
 
     public boolean isAlive() {
         return alive;
+    }
+
+    public int getMaxRange() {
+        return maxRange;
     }
 
     public void dealDamageTo(Character target, int damage) {
@@ -66,6 +71,11 @@ public class Character {
             health += heal;
         }
     }
+    
+
+    public int maxRange(Character target, int range) {
+        return range;
+    }
 
     public void setLevel(int level) {
         this.level = level;
@@ -77,5 +87,9 @@ public class Character {
 
     public void setAlive(boolean alive) {
         this.alive = alive;
+    }
+
+    public void setMaxRange(int maxRange) {
+        this.maxRange = maxRange;
     }
 }
