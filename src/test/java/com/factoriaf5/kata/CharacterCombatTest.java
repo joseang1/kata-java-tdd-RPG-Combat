@@ -93,12 +93,12 @@ public class CharacterCombatTest {
     @Test
     public void damageReducedFiftyPercentAttacker5LevelsAbove() {
 
-        attacker.setLevel(8);
-        target.setLevel(3);
+        attacker.setLevel(3);
+        target.setLevel(8);
 
-        target.dealDamageTo(attacker, 200);
+        attacker.dealDamageTo(target, 200);
 
-        assertEquals(900, attacker.getHealth());
+        assertEquals(900, target.getHealth());
     }
 
     @Test
