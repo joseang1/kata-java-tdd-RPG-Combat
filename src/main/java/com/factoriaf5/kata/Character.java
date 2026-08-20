@@ -6,11 +6,13 @@ public class Character {
     private int level;
     private boolean alive;
     protected int maxRange;
+    private int location;
 
     public Character() {
         this.health = 1000;
         this.level = 1;
         this.alive = true;
+        this.location = 0;
     }
 
     public int getHealth() {
@@ -29,8 +31,15 @@ public class Character {
         return maxRange;
     }
 
+    public int getLocation() {
+        return location;
+    }
+
     public void dealDamageTo(Character target, int damage) {
         if(this == target) {
+            return;
+        }
+        if (Math.abs(this.getLocation() - target.getLocation()) > this.getMaxRange()) {
             return;
         }
         if (target.getLevel() - this.getLevel() >= 5) {
@@ -71,6 +80,12 @@ public class Character {
             health += heal;
         }
     }
+
+    // public void characterLocation(int location) {
+    //     if(location >= maxRange) {
+    //         target.receiveDamage()
+    //     } 
+    // }
     
 
     public int maxRange(Character target, int range) {
@@ -91,5 +106,9 @@ public class Character {
 
     public void setMaxRange(int maxRange) {
         this.maxRange = maxRange;
+    }
+
+    public void setLocation(int location) {
+        this.location = location;
     }
 }

@@ -49,7 +49,7 @@ public class CharacterCombatTest {
     public void healingDamage() {
 
         target.setHealth(200);
-        attacker.healDamageTo(target, 200);
+        target.healDamageTo(target, 200);
 
         assertEquals(400, target.getHealth());
     }
@@ -58,7 +58,7 @@ public class CharacterCombatTest {
     public void healingCannotExceedHealth1000() {
         
         target.setHealth(800);
-        attacker.healDamageTo(target, 400);
+        target.healDamageTo(target, 400);
 
         assertEquals(1000, target.getHealth());
     }
@@ -110,5 +110,52 @@ public class CharacterCombatTest {
         attacker.dealDamageTo(target, 100);
 
         assertEquals(850, target.getHealth());
+    }
+
+    @Test
+    public void ifTargetOutOfRangeMeleeNoDamageDealt() {
+        Character attacker = new MeleeCharacter();
+        Character target = new Character();
+
+        target.setLocation(5);
+
+        attacker.dealDamageTo(target, 100);
+
+        assertEquals(1000, target.getHealth());
+    }
+
+    @Test
+    public void ifTargetInRangeMeleeDamageIsDealt() {
+        Character attacker = new MeleeCharacter();
+        Character target = new Character();
+
+        target.setLocation(1);
+
+        attacker.dealDamageTo(target, 100);
+
+        assertEquals(900, target.getHealth());
+    }
+
+    @Test
+    public void ifTargetInRangeRangedDamageIsDealt() {
+        Character attacker = new RangedCharacter();
+        Character target = new Character();
+
+        target.setLocation(20);
+
+        attacker.dealDamageTo(target, 100);
+
+        assertEquals(900, target.getHealth());
+    }
+
+    @Test
+    public void ifTargetIsOutOfRangeRangedDamageIsDealt() {
+        Character attacker = new RangedCharacter();
+        Character target = new Character();
+
+        target.setLocation(21);
+        attacker.dealDamageTo(target, 100);
+
+        assertEquals(1000, target.getHealth());
     }
 }
