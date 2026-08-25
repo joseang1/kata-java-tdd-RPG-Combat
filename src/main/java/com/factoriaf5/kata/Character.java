@@ -1,7 +1,7 @@
 package com.factoriaf5.kata;
 
-import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Set;
 
 public class Character {
     
@@ -10,12 +10,14 @@ public class Character {
     private boolean alive;
     protected int maxRange;
     private int location;
+    private Set<Faction> factions;
 
     public Character() {
         this.health = 1000;
         this.level = 1;
         this.alive = true;
         this.location = 0;
+        this.factions = new HashSet<>();
     }
 
     public int getHealth() {
@@ -38,7 +40,11 @@ public class Character {
         return location;
     }
 
-    public void dealDamageTo(Character target, int damage) {
+    public Set<Faction> getFactions() {
+        return factions;
+    }
+
+    public void dealDamageTo(Character target, int damage, Faction faction) {
         if(this == target) {
             return;
         }
@@ -84,6 +90,23 @@ public class Character {
         }
     }
 
+    public void joinFaction(Faction faction) {
+        factions.add(faction);
+    }
+
+    public void leaveFaction(Faction faction) {
+        factions.remove(faction);
+    }
+
+    public boolean isAllyOf(Character target) {
+        for(Faction faction : factions) {
+            if(target.getFactions().contains(faction)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public int maxRange(Character target, int range) {
         return range;
     }
@@ -106,5 +129,9 @@ public class Character {
 
     public void setLocation(int location) {
         this.location = location;
+    }
+
+    public void setFactions(Set<Faction> factions) {
+        this.factions = factions;
     }
 }

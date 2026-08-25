@@ -2,6 +2,8 @@ package com.factoriaf5.kata;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
 public class CharacterTest {
@@ -35,5 +37,81 @@ public class CharacterTest {
         assertTrue(Tifa.isAlive());
         assertEquals(1, Tifa.getLocation());
         assertEquals(2, Tifa.getMaxRange());
+    }
+
+    @Test
+    public void whenNewCharacterIsCreatedNoFactionAssigned() {
+        Character Aerith = new Character();
+
+        assertTrue(Aerith.getFactions().isEmpty());
+    }
+
+    @Test
+    public void aCharacterMayJoinAFaction() {
+        Character Aerith = new Character();
+        Faction Shinra = new Faction("Shinra");
+
+        Aerith.joinFaction(Shinra);
+
+        assertTrue(Aerith.getFactions().contains(Shinra));
+    }
+
+    @Test
+    public void aCharacterMayBelongToOneOrMoreFactions() {
+        Character Aerith = new Character();
+        Faction Shinra = new Faction("Shinra");
+        Faction ZanarkandAbes = new Faction("Zanarkand Abes");
+
+        Aerith.joinFaction(ZanarkandAbes);
+        Aerith.joinFaction(Shinra);
+
+        assertEquals(2, Aerith.getFactions().size());
+        assertTrue(Aerith.getFactions().containsAll(Set.of(ZanarkandAbes, Shinra)));
+    }
+
+    @Test
+    public void aCharacterMayLeaveTheFaction() {
+        Character Aerith = new Character();
+        Faction Shinra = new Faction("Shinra");
+        Faction ZanarkandAbes = new Faction("Zanarkand Abes");
+
+
+        Aerith.joinFaction(Shinra);
+        Aerith.joinFaction(ZanarkandAbes);
+        Aerith.leaveFaction(Shinra);
+
+        assertTrue(Aerith.getFactions().contains(ZanarkandAbes));
+    }
+
+    @Test
+    public void charactersBelongingToTheSameFactionAreConsideredAllies() {
+        Character Aerith = new Character();
+        Character Tifa = new Character();
+        Character Sephiroth = new Character();
+
+        Faction Avalanche = new Faction("Avalanche");
+        Faction Shinra = new Faction("Shinra");
+
+        Aerith.joinFaction(Avalanche);
+        Tifa.joinFaction(Avalanche);
+        Sephiroth.joinFaction(Shinra);
+
+        assertTrue(Aerith.isAllyOf(Tifa));
+    }
+
+    @Test
+    public void charactersNotBelongingToTheSameFactionAreNotAllies() {
+        Character Aerith = new Character();
+        Character Tifa = new Character();
+        Character Sephiroth = new Character();
+
+        Faction Avalanche = new Faction("Avalanche");
+        Faction Shinra = new Faction("Shinra");
+
+        Aerith.joinFaction(Avalanche);
+        Tifa.joinFaction(Avalanche);
+        Sephiroth.joinFaction(Shinra);
+
+        assertFalse(Aerith.isAllyOf(Sephiroth));
     }
 }
