@@ -44,11 +44,14 @@ public class Character {
         return factions;
     }
 
-    public void dealDamageTo(Character target, int damage, Faction faction) {
+    public void dealDamageTo(Character target, int damage) {
         if(this == target) {
             return;
         }
         if (Math.abs(this.getLocation() - target.getLocation()) > this.getMaxRange()) {
+            return;
+        }
+        if(this.isAllyOf(target)) {
             return;
         }
         if (target.getLevel() - this.getLevel() >= 5) {
@@ -73,7 +76,7 @@ public class Character {
     }
 
     public void healDamageTo(Character target, int heal) {
-        if(this != target) {
+        if(this != target && !this.isAllyOf(target)) {
             return;
         }
         target.receiveHealing(heal);

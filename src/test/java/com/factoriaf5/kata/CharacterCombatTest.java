@@ -158,4 +158,33 @@ public class CharacterCombatTest {
 
         assertEquals(1000, target.getHealth());
     }
+
+    @Test
+    public void ifTargetIsAllyNoDamageDealt() {
+        Character aerith = new Character();
+        Character tifa = new Character();
+        Faction avalanche = new Faction("Avalanche");
+
+        aerith.joinFaction(avalanche);
+        tifa.joinFaction(avalanche);
+
+        aerith.dealDamageTo(tifa, 200);
+
+        assertEquals(1000, tifa.getHealth());
+    }
+
+    @Test
+    public void ifTargetIsAllyCanBeHealed() {
+        Character aerith = new Character();
+        Character tifa = new Character();
+        Faction avalanche = new Faction("Avalanche");
+
+        aerith.joinFaction(avalanche);
+        tifa.joinFaction(avalanche);
+        tifa.setHealth(800);
+
+        aerith.healDamageTo(tifa, 200);
+
+        assertEquals(1000, tifa.getHealth());
+    }
 }

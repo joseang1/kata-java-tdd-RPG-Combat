@@ -24,7 +24,7 @@ public class CharacterTest {
         assertEquals(1000, Aerith.getHealth());
         assertEquals(1, Aerith.getLevel());
         assertTrue(Aerith.isAlive());
-        assertEquals(1, Aerith.getLocation());
+        assertEquals(0, Aerith.getLocation());
         assertEquals(20, Aerith.getMaxRange());
     }
 
@@ -35,7 +35,7 @@ public class CharacterTest {
         assertEquals(1000, Tifa.getHealth());
         assertEquals(1, Tifa.getLevel());
         assertTrue(Tifa.isAlive());
-        assertEquals(1, Tifa.getLocation());
+        assertEquals(0, Tifa.getLocation());
         assertEquals(2, Tifa.getMaxRange());
     }
 
