@@ -1,7 +1,7 @@
 
 # Kata RPG Combat
 
-Background This is a fun kata that has the programmer building simple combat rules, as for a role-playing game (RPG). It is implemented as a sequence of iterations. The domain doesn't include a map kills or any other character sapart from their ability to damage and heal one another.
+> This is a fun kata that has the programmer building simple combat rules, as for a role-playing game (RPG). It is implemented as a sequence of iterations. The domain doesn't include a map kills or any other character sapart from their ability to damage and heal one another.
 
 ## Requiered
 
@@ -74,3 +74,11 @@ Retrospective
     - What have you learned? Any new technique or pattern? 
     - Share your design with others, and get feedback on different approaches.
 ```
+
+---
+
+## Testing coverage
+
+| Testing | Coverage |
+| --- | --- |
+| ![testing](./assets/img/Testing.jpg) | ![coverage](./assets/img/TestingCoverage.jpg) |
